@@ -58,9 +58,11 @@ class MainServer(QWidget, Ui_Form):
         self.list_msg.clear()
         self.list_msg.addItem('连接成功')
 
-    def break_client(self, show='你已下线'):
+    def break_client(self, show='你已下线', send=True):
+        # send参数为是否通知服务器
         self.btn_disconnect.setEnabled(False)
-        self.chat.break_client()
+        if send:
+            self.chat.break_client()
         if show:
             self.list_msg.addItem(show)
         self.edit_ip.setEnabled(True)
@@ -76,9 +78,9 @@ class MainServer(QWidget, Ui_Form):
             msgStr = f"{msgSender}: {msg['text']}"
             self.list_msg.addItem(msgStr)
         elif msg['type'] == 'close':
-            self.break_client('服务器断开连接')
+            self.break_client('服务器断开连接', False)
         elif msg['type'] == 'kill':
-            self.break_client('你被踢出局聊')
+            self.break_client('你被踢出局聊', False)
 
     def send_msg(self):
         send_name = self.box_send_to.itemText(self.box_send_to.currentIndex())

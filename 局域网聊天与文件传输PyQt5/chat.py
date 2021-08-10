@@ -183,10 +183,13 @@ class Server(object):
         return True
 
     def member_exit(self, user_name):
-        del self.users[user_name]  # 删掉该用户信息
-        # 向所有在线的客户端反馈新的好友登录信息并提供在线用户列表
-        self.radio_msg(self.msg(f'{user_name}下线'))
-        self.send_users()
+        if user_name in user_name:
+            del self.users[user_name]  # 删掉该用户信息
+            # 向所有在线的客户端反馈新的好友登录信息并提供在线用户列表
+            self.radio_msg(self.msg(f'{user_name}下线'))
+            self.send_users()
+        else:
+            print(f'member_exit Error no user {user_name}')
 
     def kill_member(self, user_name):
         # 判断用户是否存在
@@ -204,6 +207,7 @@ class Server(object):
 
     def break_forbidden(self, user_name):
         if user_name not in list(self.users.keys()):
+            print(f'break forbidden no user {user_name}')
             return 'no user'
         self.users[user_name]['forbidden'] = 0
         self.send_users()
@@ -258,9 +262,13 @@ class Client:
                 print(f'当前用户列表: {self.user_list}')
             elif msg["type"] == 'kill':
                 print(f'系统消息: {msg["text"]}')  # 被踢
+                if self.receive_command:
+                    self.receive_command(msg)
                 break
             elif msg['type'] == 'close':
                 print(f'系统消息: {msg["text"]}')  # 服务器关闭
+                if self.receive_command:
+                    self.receive_command(msg)
                 break
             if self.receive_command:
                 self.receive_command(msg)

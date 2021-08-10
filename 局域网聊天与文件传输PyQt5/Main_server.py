@@ -23,6 +23,7 @@ class MainServer(QWidget, Ui_Form):
         self.btn_disconnect.clicked.connect(self.closeServer)  # 关闭服务器按钮
         self.btn_send.clicked.connect(self.send_msg)  # ”系统广播“按钮按下的槽函数
         self.btn_forbidden.clicked.connect(self.forbidden)
+        self.btn_break_bidden.clicked.connect(self.break_forbidden)
         self.btn_kill.clicked.connect(self.kill_member)
         self.edit_sendmsg.textChanged.connect(self.set_send_btn)  # 消息编辑框, 内容变化时的槽函数
         self.edit_forbidden_time.setEnabled(False)  # 不可编辑
