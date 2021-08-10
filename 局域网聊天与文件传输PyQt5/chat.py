@@ -126,8 +126,14 @@ class Server(object):
         """msg:{'sender':username or 'system', 'type':'msg' or 'users' or 'exit' or 'kill', 'close', receive:'' or username,
         'text':text} """
         # 用json格式存储和传输，并定义每个信息的类型
+        if 'type' in msg:
+            type = msg['type']
+        else:
+            msg['type'] = type
         if type == 'exit':
+            print(f'{msg["sender"]} exit')
             self.member_exit(msg['sender'])
+            return True
         elif type == 'kill':
             if not msg['text']:  # 如果发送时没有内容即为函数调用,则踢群
                 # 提示被踢成员
@@ -138,8 +144,6 @@ class Server(object):
                 return True
         elif type == 'close':
             self.radio_msg(self.msg('服务器关闭'), 'close')
-        if type:
-            msg['type'] = type
         if type != 'users' and not ('sender' in msg and 'receive' in msg and msg['text']):  # 内容不符合格式
             print(f'format mismatch {msg}')
             return 'format mismatch'
@@ -275,7 +279,7 @@ class Client:
         self.client_runState = False
 
     def break_client(self):
-        self.send('', type='exit')
+        self.send('退出', type='exit')
 
     def msg(self, text, receive=''):
         return {'sender': self.user_name, 'receive': receive, 'text': text}
@@ -286,6 +290,7 @@ class Client:
         send_data = json.dumps(msg).encode()
         try:
             self.client.send(send_data)
+            print(f'send {msg}')
         except:
             return False
 

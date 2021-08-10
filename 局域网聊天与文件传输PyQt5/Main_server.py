@@ -74,7 +74,6 @@ class MainServer(QWidget, Ui_Form):
         if msg['type'] == 'users':  # 用户列表
             self.qt.rush_memberQList(self.chat.user_list)  # 显示用户列表
         elif msg['type'] == 'msg':
-            print(msg)
             msgSender = '系统消息' if msg['sender'] == 'system' else msg['sender']
             msgStr = f"{msgSender}: {msg['text']}"
             self.list_msg.addItem(QListWidgetItem(msgStr))
@@ -150,7 +149,10 @@ class MainServer(QWidget, Ui_Form):
         return msg_box == QMessageBox.Yes  # 确认返回True，否则为False
 
     def closeEvent(self, event):
-        if self.closeServer():
+        if self.chat.server_runState:
+            if self.closeServer():
+                event.accept()
+        else:
             event.accept()
 
 
