@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>799</width>
+    <height>531</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>光之局聊-用户端</string>
+  </property>
+  <layout class="QVBoxLayout" name="layout_form">
+   <item>
+    <layout class="QHBoxLayout" name="MainLayout" stretch="1,1">
+     <item>
+      <layout class="QVBoxLayout" name="layout_msg" stretch="8,0,0,2,0">
+       <item>
+        <widget class="QListWidget" name="list_msg"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layout_set_name">
+         <item>
+          <widget class="QLabel" name="labe_set_name">
+           <property name="text">
+            <string>请输入名称(离线时可编辑):</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="edit_set_name"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layout_send_to" stretch="0,1">
+         <item>
+          <widget class="QLabel" name="lab_send_to">
+           <property name="text">
+            <string>发送到:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="box_send_to">
+           <item>
+            <property name="text">
+             <string>全员</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="edit_sendmsg"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layout_send_mode">
+         <item>
+          <widget class="QPushButton" name="btn_send_file">
+           <property name="text">
+            <string>上传文件</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_send">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>发送</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="layout_sever">
+       <item>
+        <widget class="QTableWidget" name="tabWidget_member">
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>用户名</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>禁言情况</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layout_ip">
+         <item>
+          <widget class="QLabel" name="lab_ip_title">
+           <property name="text">
+            <string>服务器地址:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="edit_ip">
+           <property name="inputMask">
+            <string>000.000.000.000</string>
+           </property>
+           <property name="text">
+            <string>...</string>
+           </property>
+           <property name="maxLength">
+            <number>15</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layout_port">
+         <item>
+          <widget class="QLabel" name="lab_port">
+           <property name="text">
+            <string>服务器端口:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="edit_port">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="lab_password">
+           <property name="text">
+            <string>进服密码:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="placeholderText">
+            <string>没有则不填</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="layou_connect">
+         <item>
+          <widget class="QPushButton" name="btn_connect">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>连接服务器</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_disconnect">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>断开连接</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
